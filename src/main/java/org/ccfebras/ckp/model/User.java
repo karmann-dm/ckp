@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.ccfebras.ckp.model.base.DateAudit;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {
@@ -65,4 +67,14 @@ public class User extends DateAudit {
     @Getter
     @Setter
     private Rank rank;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    @Getter
+    @Setter
+    private Set<Role> roles = new HashSet<>();
 }
