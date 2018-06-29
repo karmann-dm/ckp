@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.ccfebras.ckp.model.base.UserDateAudit;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "positions", uniqueConstraints = {
@@ -25,4 +26,9 @@ public class Position extends UserDateAudit {
     @Getter
     @Setter
     private String name;
+
+    @OneToMany(mappedBy = "position")
+    @Getter
+    @Setter
+    private List<User> users;
 }

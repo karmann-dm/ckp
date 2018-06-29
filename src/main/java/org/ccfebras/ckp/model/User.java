@@ -47,4 +47,22 @@ public class User extends DateAudit {
     @Getter
     @Setter
     private Organization organization;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "degree_id")
+    @Getter
+    @Setter
+    private Degree degree;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "position_id")
+    @Getter
+    @Setter
+    private Position position;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rank_id")
+    @Getter
+    @Setter
+    private Rank rank;
 }
