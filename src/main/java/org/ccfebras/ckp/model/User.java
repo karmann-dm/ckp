@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.ccfebras.ckp.model.base.DateAudit;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,6 +44,12 @@ public class User extends DateAudit {
     @Getter
     @Setter
     private String email;
+
+    @Column(name = "password")
+    @Size(max = 100)
+    @Getter
+    @Setter
+    private String password;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id")
