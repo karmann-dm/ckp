@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.ccfebras.ckp.model.base.DateAudit;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,62 +18,48 @@ import java.util.Set;
 })
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class User extends DateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @Getter
-    @Setter
     private Long id;
 
     @Column(name = "first_name")
-    @Getter
-    @Setter
     private String firstName;
 
     @Column(name = "second_name")
-    @Getter
-    @Setter
     private String secondName;
 
     @Column(name = "last_name")
-    @Getter
-    @Setter
     private String lastName;
 
     @Column(name = "email")
-    @Getter
-    @Setter
     private String email;
 
     @Column(name = "password")
     @Size(max = 100)
-    @Getter
-    @Setter
     private String password;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id")
-    @Getter
-    @Setter
+    @NotNull
     private Organization organization;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "degree_id")
-    @Getter
-    @Setter
+    @NotNull
     private Degree degree;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "position_id")
-    @Getter
-    @Setter
+    @NotNull
     private Position position;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rank_id")
-    @Getter
-    @Setter
+    @NotNull
     private Rank rank;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -81,7 +68,27 @@ public class User extends DateAudit {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    @Getter
-    @Setter
     private Set<Role> roles = new HashSet<>();
+
+    public User(String firstName,
+                String secondName,
+                String lastName,
+                String email,
+                String password,
+                String phone,
+                Organization organization,
+                Degree degree,
+                Position position,
+                Rank rank) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.organization = organization;
+        this.degree = degree;
+        this.position = position;
+        this.rank = rank;
+    }
 }
