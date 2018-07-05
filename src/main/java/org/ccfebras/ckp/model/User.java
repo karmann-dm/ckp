@@ -42,6 +42,9 @@ public class User extends DateAudit {
     @Size(max = 100)
     private String password;
 
+    @Column(name = "phone")
+    private String phone;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id")
     @NotNull
