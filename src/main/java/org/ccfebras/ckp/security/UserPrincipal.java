@@ -34,6 +34,9 @@ public class UserPrincipal implements UserDetails {
     private String email;
 
     @Getter @Setter
+    private String phone;
+
+    @Getter @Setter
     private Organization organization;
 
     @Getter @Setter
@@ -101,6 +104,7 @@ public class UserPrincipal implements UserDetails {
                 user.getSecondName(),
                 user.getLastName(),
                 user.getEmail(),
+                user.getPhone(),
                 user.getOrganization(),
                 user.getPosition(),
                 user.getRank(),
