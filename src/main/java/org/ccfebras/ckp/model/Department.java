@@ -15,25 +15,19 @@ import java.util.List;
 })
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Department extends UserDateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
     private Long id;
 
     @Column(name = "short_name")
-    @Getter
-    @Setter
     private String shortName;
 
     @Column(name = "full_name", columnDefinition = "TEXT")
-    @Getter
-    @Setter
     private String fullName;
 
     @OneToMany(mappedBy = "department")
-    @Getter
-    @Setter
     private List<Organization> organizations;
 }

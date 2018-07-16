@@ -1,5 +1,6 @@
 package org.ccfebras.ckp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,36 +16,28 @@ import java.util.List;
 })
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Organization extends UserDateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
     private Long id;
 
     @Column(name = "info")
-    @Getter
-    @Setter
     private String info;
 
     @Column(name = "short_name")
-    @Getter
-    @Setter
     private String shortName;
 
     @Column(name = "full_name", columnDefinition = "TEXT")
-    @Getter
-    @Setter
     private String fullName;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
-    @Getter
-    @Setter
     private Department department;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "organization")
-    @Getter
-    @Setter
     private List<User> users;
 }

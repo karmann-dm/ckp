@@ -15,20 +15,16 @@ import java.util.List;
 })
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Position extends UserDateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
     private Long id;
 
     @Column(name = "name")
-    @Getter
-    @Setter
     private String name;
 
     @OneToMany(mappedBy = "position")
-    @Getter
-    @Setter
     private List<User> users;
 }
