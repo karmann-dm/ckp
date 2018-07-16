@@ -70,34 +70,6 @@ public class AuthController {
             );
         }
 
-        if(!dictionaryService.organizationExistsById(signUpRequest.getOrganizationId())) {
-            return new ResponseEntity<ApiResponse>(
-                    new ApiResponse(false, "Organization with id " + signUpRequest.getOrganizationId() + " does not exists."),
-                    HttpStatus.BAD_REQUEST
-            );
-        }
-
-        if(!dictionaryService.positionExistsById(signUpRequest.getPositionId())) {
-            return new ResponseEntity<ApiResponse>(
-                    new ApiResponse(false, "Position with id " + signUpRequest.getPositionId() + " does not exists."),
-                    HttpStatus.BAD_REQUEST
-            );
-        }
-
-        if(!dictionaryService.rankExistsById(signUpRequest.getRankId())) {
-            return new ResponseEntity<ApiResponse>(
-                    new ApiResponse(false, "Rank with id " + signUpRequest.getRankId() + " does not exists."),
-                    HttpStatus.BAD_REQUEST
-            );
-        }
-
-        if(!dictionaryService.degreeExistsById(signUpRequest.getDegreeId())) {
-            return new ResponseEntity<ApiResponse>(
-                    new ApiResponse(false, "Degree with id " + signUpRequest.getDegreeId() + " does not exists."),
-                    HttpStatus.BAD_REQUEST
-            );
-        }
-
         User user = new User(
                 signUpRequest.getFirstName(),
                 signUpRequest.getSecondName(),
